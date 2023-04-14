@@ -29,7 +29,7 @@ const defaults: Defaults = {
   //   }
   // },
   moduleFields: {
-    search: { $data: {}, $inline: true, $search: () => {} },
+    search: { $data: {}, $inline: true, $search: () => {}, $default: {} },
     table: {
       $data: [],
       $permissions: [],

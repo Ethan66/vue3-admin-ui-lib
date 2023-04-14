@@ -56,6 +56,7 @@ export type SearchModuleFields = {
   $data: any
   $search: SearchFn
   $inline: boolean
+  $default: any // 默认值，非表单里展示的，但是接口请求需要
 }
 
 export type DialogModuleFields = {

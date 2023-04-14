@@ -43,13 +43,16 @@ const App = defineComponent({
     }
 
     const onClear = () => {
-      fields.value.forEach(key => {
-        if (form[key].default !== undefined) {
+      Object.keys(form.$data).forEach(key => {
+        if (form[key]?.default !== undefined) {
           form.$data[key] = form[key].default
         } else {
           form.$data[key] = undefined
         }
       })
+      if (form.$default) {
+        Object.assign(form.$data, form.$default)
+      }
     }
     return () => (
       <el-form class="search-module" inline={form.$inline} model={form.$data}>
