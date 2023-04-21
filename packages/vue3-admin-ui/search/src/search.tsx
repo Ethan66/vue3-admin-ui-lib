@@ -20,13 +20,13 @@ const App = defineComponent({
     const isShowAll = ref(false)
     const fields = computed(() => {
       const result = Object.keys(form).filter(
-        key => !key.startsWith('$') && form[key].show === true
+        (key) => !key.startsWith('$') && form[key].show === true
       )
       return !min || isShowAll.value ? result : result.slice(0, min)
     })
     const onSearch = () => {
       const value = { ...form.$data }
-      Object.keys(value).forEach(key => {
+      Object.keys(value).forEach((key) => {
         if (/\w+,\w+/.test(key)) {
           const tmpKeys = key.split(',')
           const tmp = value[key] || []
@@ -37,13 +37,11 @@ const App = defineComponent({
           delete value[key]
         }
       })
-      attrs.onSearch
-        ? (attrs.onSearch as (val: object) => {})(value)
-        : form.$search(value, table)
+      attrs.onSearch ? (attrs.onSearch as (val: object) => {})(value) : form.$search(value, table)
     }
 
     const onClear = () => {
-      Object.keys(form.$data).forEach(key => {
+      Object.keys(form.$data).forEach((key) => {
         if (form[key]?.default !== undefined) {
           form.$data[key] = form[key].default
         } else {
@@ -54,9 +52,17 @@ const App = defineComponent({
         Object.assign(form.$data, form.$default)
       }
     }
+    const handleEmpty = (e: any) => {
+      e.preventDefault()
+    }
     return () => (
-      <el-form class="search-module" inline={form.$inline} model={form.$data}>
-        {fields.value.map(key => {
+      <el-form
+        class="search-module"
+        inline={form.$inline}
+        model={form.$data}
+        onSubmit={handleEmpty}
+      >
+        {fields.value.map((key) => {
           const value = form[key]
           if (value.slot) {
             return (
@@ -73,12 +79,7 @@ const App = defineComponent({
           } else {
             return (
               <el-form-item key={key} label={value.label}>
-                <FormItem
-                  form={form}
-                  field={key}
-                  data={form.$data}
-                  item={form[key]}
-                ></FormItem>
+                <FormItem form={form} field={key} data={form.$data} item={form[key]}></FormItem>
               </el-form-item>
             )
           }
@@ -92,10 +93,7 @@ const App = defineComponent({
           </el-button>
           {slots.btn?.()}
           {min ? (
-            <el-button
-              text
-              onClick={() => (isShowAll.value = !isShowAll.value)}
-            >
+            <el-button text onClick={() => (isShowAll.value = !isShowAll.value)}>
               {isShowAll.value ? '收起' : '更多搜索'}
             </el-button>
           ) : (
