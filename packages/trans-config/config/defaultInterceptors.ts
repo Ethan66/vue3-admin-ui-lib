@@ -97,7 +97,7 @@ export default {
       return result
     }
     Object.keys(config).forEach((type) => {
-      if (['search', 'table', 'dialog'].includes(type)) {
+      if (['search', 'table', 'dialog'].includes(type.replace(/\d+/, ''))) {
         const value = config[type]
         if (isPlainObject(value)) {
           Object.keys(value).forEach((key) => {
@@ -133,7 +133,7 @@ export default {
                 ;(value as AtransSearchRes).$data[key] = value[key].default
               }
             }
-            if (type === 'dialog') {
+            if (type.replace(/\d+/, '') === 'dialog') {
               const rule = value[key].rule
               if (rule !== undefined) {
                 const rules = (value as AtransDialogRes).$rules as object
@@ -183,7 +183,7 @@ export default {
                   ;(item as AtransSearchRes).$data[key] = item[key].default
                 }
               }
-              if (type === 'dialog') {
+              if (type.replace(/\d+/, '') === 'dialog') {
                 const rule = item[key].rule
                 if (rule !== undefined) {
                   const rules = (item as AtransDialogRes).$rules as object

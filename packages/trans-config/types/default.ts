@@ -17,6 +17,9 @@ export interface Defaults {
     search?: SearchModuleFields
     table?: TableModuleFields
     dialog?: DialogModuleFields
+    dialog1?: DialogModuleFields
+    dialog2?: DialogModuleFields
+    dialog3?: DialogModuleFields
   }
   extraFields: {
     search?: object
@@ -24,11 +27,23 @@ export interface Defaults {
     dialog?: {
       $dialog: DialogExtraFields
     }
+    dialog1?: {
+      $dialog: DialogExtraFields
+    }
+    dialog2?: {
+      $dialog: DialogExtraFields
+    }
+    dialog3?: {
+      $dialog: DialogExtraFields
+    }
   }
   items: {
     search: object
     table: object
     dialog: object
+    dialog1: object
+    dialog2: object
+    dialog3: object
   }
   placeholders: string[]
   interceptors?: { [key: string]: InterceptorFn }
@@ -68,11 +83,7 @@ export type TableModuleFields = {
   $permissions: string[]
   $data: {}[]
   $api: (query: any) => Promise<object>
-  $onGetData: (
-    table: TableModuleFields,
-    cur?: number,
-    value?: object
-  ) => Promise<object>
+  $onGetData: (table: TableModuleFields, cur?: number, value?: object) => Promise<object>
   $loading: boolean
   $border: boolean
   $pages: {

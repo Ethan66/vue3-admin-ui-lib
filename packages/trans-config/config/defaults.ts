@@ -4,7 +4,10 @@ const defaults: Defaults = {
   items: {
     search: { show: true, el: 'input' },
     table: { show: true, el: 'cell', minWidth: 80 },
-    dialog: { show: true, el: 'input' }
+    dialog: { show: true, el: 'input' },
+    dialog1: { show: true, el: 'input' },
+    dialog2: { show: true, el: 'input' },
+    dialog3: { show: true, el: 'input' }
   },
   // fields: {
   //   search: 'key',
@@ -42,10 +45,58 @@ const defaults: Defaults = {
     },
     dialog: {
       $rules: {}
+    },
+    dialog1: {
+      $rules: {}
+    },
+    dialog2: {
+      $rules: {}
+    },
+    dialog3: {
+      $rules: {}
     }
   },
   extraFields: {
     dialog: {
+      $dialog: {
+        api: () => new Promise(() => {}),
+        title: '',
+        data: {},
+        config: {},
+        rules: {},
+        show: false,
+        'close-on-click-modal': false,
+        'item-width': '50%',
+        submit: () => new Promise(() => {})
+      }
+    },
+    dialog1: {
+      $dialog: {
+        api: () => new Promise(() => {}),
+        title: '',
+        data: {},
+        config: {},
+        rules: {},
+        show: false,
+        'close-on-click-modal': false,
+        'item-width': '50%',
+        submit: () => new Promise(() => {})
+      }
+    },
+    dialog2: {
+      $dialog: {
+        api: () => new Promise(() => {}),
+        title: '',
+        data: {},
+        config: {},
+        rules: {},
+        show: false,
+        'close-on-click-modal': false,
+        'item-width': '50%',
+        submit: () => new Promise(() => {})
+      }
+    },
+    dialog3: {
       $dialog: {
         api: () => new Promise(() => {}),
         title: '',
