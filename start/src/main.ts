@@ -6,7 +6,8 @@ import ElementPlus from 'element-plus'
 import 'element-plus/dist/index.css'
 
 import adminDesign from 'vue3-admin-ui'
-import 'vue3-admin-ui/dist/style.css'
+// import 'vue3-admin-ui/dist/style.css'
+// import a from 'global-css-files'
 
 const app = createApp(App).use(adminDesign)
 

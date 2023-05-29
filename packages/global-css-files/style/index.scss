@@ -1,0 +1,61 @@
+// flex两端对齐，垂直居中
+.w-flex-cen {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  // flex水平垂直居中
+  &-all {
+    @extend .w-flex-cen;
+    justify-content: center;
+  }
+}
+
+// absolute水平居中对齐
+@mixin w-absolute-cen-top($top: 0) {
+  position: absolute;
+  left: 50%;
+  top: $top;
+  transform: translateX(-50%);
+}
+
+// absolute水平垂直居中
+.w-absolute-1\/2 {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+// 单行超出省略
+.w-line-ellipsis {
+  display: block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+// 多行超出省略 $line是行数
+@mixin w-lines-ellipsis($line) {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: $line;
+}
+
+// 滚动条设置 $width: 宽度；$radius: 圆角; $thumb: 滑块颜色
+@mixin w-scroll-bar($width: 5px, $radius: 20px, $thumb: rgb(204, 204, 204)) {
+  overflow-y: scroll;
+  &::-webkit-scrollbar {
+    width: $width;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: $thumb;
+    border-radius: $radius;
+  }
+  &::-webkit-scrollbar-track-piece {
+    border-radius: $radius;
+    background: rgb(236, 236, 236);
+  }
+}

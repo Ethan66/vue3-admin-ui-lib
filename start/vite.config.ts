@@ -20,6 +20,18 @@ export default defineConfig({
       resolvers: [ElementPlusResolver()]
     })
   ],
+  css: {
+    preprocessorOptions: {
+      scss: {
+        // unpkg地址：https://unpkg.com/global-css-files/dist/index.scss
+        additionalData: `@import "../packages/global-css-files/style/index.scss";`
+      },
+      less: {
+        // unpkg地址：https://unpkg.com/global-css-files/dist/index.less
+        additionalData: `@import "../packages/global-css-files/style/index.less";`
+      }
+    }
+  },
   server: {
     port: 1216
   },

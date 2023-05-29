@@ -18,6 +18,16 @@ const router = createRouter({
       path: '/demo',
       name: 'demo',
       component: () => import('@/views/demo/index.vue')
+    },
+    {
+      path: '/scss',
+      name: 'scss',
+      component: () => import('@/views/demo/css-lib/index.vue')
+    },
+    {
+      path: '/less',
+      name: 'less',
+      component: () => import('@/views/demo/css-lib/less.vue')
     }
   ]
 })
