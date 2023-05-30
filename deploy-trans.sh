@@ -3,6 +3,6 @@ set -e
 
 cd dist/trans-config
 
-npm publish
+npm publish --registry=https://registry.npmjs.org/
 
 cd -

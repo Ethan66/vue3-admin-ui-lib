@@ -3,6 +3,6 @@ set -e
 
 cd dist/vue3-admin-ui
 
-npm publish
+npm publish --registry=https://registry.npmjs.org/
 
 cd -
