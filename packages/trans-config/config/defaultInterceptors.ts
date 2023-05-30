@@ -25,7 +25,14 @@ const childKeys = [
   'prop'
 ]
 const listeners = ['click', 'change', 'input', 'focus', 'blur']
-const fields = { search: 'key', table: 'prop', dialog: 'key' }
+const fields = {
+  search: 'key',
+  table: 'prop',
+  dialog: 'key',
+  dialog1: 'key',
+  dialog2: 'key',
+  dialog3: 'key'
+}
 const specialEl = ['radio-group', 'date-picker', 'checkbox-group']
 const ruleCommon = { required: true, message: '', trigger: 'change' }
 
