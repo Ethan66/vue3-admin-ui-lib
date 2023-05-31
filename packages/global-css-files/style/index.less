@@ -12,15 +12,14 @@
 }
 
 // absolute对齐
-.w-absolute-cen-top(@top: 0) {
+.w-absolute-left-cen {
   position: absolute;
   left: 50%;
-  top: @top;
   transform: translateX(-50%);
 }
 
 // absolute水平垂直居中
-.w-absolute-1\/2 {
+.w-absolute-cen-all {
   position: absolute;
   left: 50%;
   top: 50%;
@@ -42,6 +41,23 @@
   display: -webkit-box;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: @line;
+}
+
+// 默认垂直滚动条设置
+.w-scroll-bar {
+  overflow-y: scroll;
+  &::-webkit-scrollbar {
+    width: 5px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: rgb(204, 204, 204);
+    border-radius: 20px;
+  }
+  &::-webkit-scrollbar-track-piece {
+    border-radius: 20px;
+    background: rgb(236, 236, 236);
+  }
 }
 
 // 滚动条设置 @width: 宽度；@radius: 圆角; @thumb: 滑块颜色

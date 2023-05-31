@@ -18,8 +18,8 @@ function copyAndCompressDirectory(srcPath, distPath) {
       copyAndCompressDirectory(filePath, distFilePath)
     } else {
       // 如果当前是一个文件，则进行复制和压缩操作
-      let content = fs.readFileSync(filePath, 'utf-8').replace(/\/\/[^\r\n]*/g, '')
-      content = content.replace(/[\r\n\s]+/g, '')
+      let content = fs.readFileSync(filePath, 'utf-8').replace(/\/\/[^\r\n]*/g, ' ')
+      content = content.replace(/[\r\n\s]+/g, ' ')
       fs.writeFileSync(distFilePath, content)
     }
   })

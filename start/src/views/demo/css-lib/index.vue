@@ -22,17 +22,25 @@
     </div>
     <div class="line-wrap w-flex-cen-all">
       <h5>滚动条：</h5>
+      <p class="w-scroll-bar" style="flex: 1; height: 50px; max-width: 200px">
+        略略略略略略略略略略略略略略略略略略略略略略略略略略略略略略略略略略略略略略略略略略略略略略略略略略略略略略略略略略略略略略略略略略略略略略略略
+      </p>
+    </div>
+    <div class="line-wrap w-flex-cen-all">
+      <h5>滚动条：</h5>
       <p class="scroll-bar" style="flex: 1; height: 50px; max-width: 200px">
         略略略略略略略略略略略略略略略略略略略略略略略略略略略略略略略略略略略略略略略略略略略略略略略略略略略略略略略略略略略略略略略略略略略略略略略略
       </p>
     </div>
     <div class="line-wrap" style="position: relative; margin: 0">
       <h5>绝对定位水平垂直居中：</h5>
-      <p class="w-absolute-1/2" style="border: 1px solid red; margin: 0">我是absolute</p>
+      <p class="w-absolute-cen-all" style="border: 1px solid red; margin: 0">我是absolute</p>
     </div>
     <div class="line-wrap" style="position: relative; margin: 0">
       <h5>绝对定位水平居中top是30%：</h5>
-      <p class="absolute-30" style="border: 1px solid red; margin: 0">我是absolute</p>
+      <p class="absolute-30 w-absolute-left-cen" style="border: 1px solid red; margin: 0">
+        我是absolute
+      </p>
     </div>
   </div>
 </template>
@@ -57,10 +65,10 @@
     @include w-lines-ellipsis(3);
   }
   .scroll-bar {
-    @include w-scroll-bar();
+    @include w-scroll-bar(10px, 20px, red);
   }
   .absolute-30 {
-    @include w-absolute-cen-top(30%);
+    top: 30%;
   }
 }
 </style>
