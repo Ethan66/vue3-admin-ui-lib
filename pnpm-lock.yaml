@@ -53,16 +53,13 @@ importers:
       vite-plugin-dts: registry.npmmirror.com/vite-plugin-dts/2.1.0_qtt2czb2qoqfpedyqirhvl644q
       vue-tsc: registry.npmmirror.com/vue-tsc/1.2.0_typescript@4.8.4
 
-  packages/global-css:
+  packages/global-css-files:
     specifiers: {}
 
   packages/trans-config:
     specifiers: {}
 
   packages/vue3-admin-ui:
-    specifiers: {}
-
-  packages/w-css:
     specifiers: {}
 
   start:

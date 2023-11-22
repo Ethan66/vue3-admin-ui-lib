@@ -25,8 +25,9 @@ const App = defineComponent({
       return !min || isShowAll.value ? result : result.slice(0, min)
     })
     const onSearch = () => {
-      const value = { ...form.$data }
+      const value = { ...(form.$default || {}), ...form.$data }
       Object.keys(value).forEach((key) => {
+        form.$data[key] ??= value[key]?.default ?? value[key]
         if (/\w+,\w+/.test(key)) {
           const tmpKeys = key.split(',')
           const tmp = value[key] || []

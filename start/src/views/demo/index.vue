@@ -52,8 +52,10 @@ const onDel = (val: any) => {
 const configs = reactive(data)
 configs.table.btn.clicks = [onEdit, onDel] // 给按钮添加事件
 const { search, table, $dialog } = toRefs(configs)
+search.value.$data['startCallTime,endCallTime'] = ['2023-11-22 00:00:00', '2023-11-23 00:00:00']
+search.value.$default = { a: 123 }
 configs.table.$api = apiGetUserList // 给表格配置api
-configs.table.$onGetData(table.value) // 请求表格接口
+configs.table.$onGetData(table.value, 1, search) // 请求表格接口
 
 console.warn('----- my data is configs: ', configs)
 </script>
