@@ -113,6 +113,7 @@ export type DialogExtraFields = {
   table?: AtransTableRes
   rules: object
   data: any
+  labelWidth: string
   config: AtransDialogRes
   show: boolean
   'close-on-click-modal': boolean

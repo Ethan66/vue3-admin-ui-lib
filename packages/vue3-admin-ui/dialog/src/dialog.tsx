@@ -83,7 +83,7 @@ const App = defineComponent({
               <el-form
                 model={form.data}
                 size={form.size}
-                label-width={`${maxLabelWidth.value * 20}px`}
+                label-width={`${form.labelWidth || maxLabelWidth.value * 20}px`}
                 rules={config.value.$rules}
                 ref={ruleFormRef}
                 key={form.data}

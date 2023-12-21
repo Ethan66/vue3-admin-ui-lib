@@ -56,6 +56,7 @@ search.value.$data['startCallTime,endCallTime'] = ['2023-11-22 00:00:00', '2023-
 search.value.$default = { a: 123 }
 configs.table.$api = apiGetUserList // 给表格配置api
 configs.table.$onGetData(table.value, 1, search) // 请求表格接口
+$dialog.value.labelWidth = '100' // 设置dialog的label-width
 
 console.warn('----- my data is configs: ', configs)
 </script>
