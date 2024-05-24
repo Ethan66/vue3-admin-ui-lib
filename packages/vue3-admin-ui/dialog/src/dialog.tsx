@@ -38,7 +38,7 @@ const App = defineComponent({
      * name: 获取dialog自定义配置属性
      */
     const parentAttr = computed(() => {
-      return Object.keys(form).reduce((data, key) => {
+      return Object.keys(form).reduce((data: Record<string, any>, key) => {
         if (['title', 'close-on-click-modal'].includes(key)) {
           data[key] = form[key]
         }
@@ -103,6 +103,7 @@ const App = defineComponent({
                         <FormItem
                           form={config.value}
                           field={key}
+                          onlyRead={form.$onlyRead}
                           data={form.data}
                           item={config.value[key]}
                           slots={slots}
@@ -121,6 +122,7 @@ const App = defineComponent({
                         <FormItem
                           form={config.value}
                           field={key}
+                          onlyRead={form.$onlyRead}
                           data={form.data}
                           item={config.value[key]}
                         ></FormItem>
@@ -134,10 +136,12 @@ const App = defineComponent({
           footer: () => {
             return (
               <div>
-                <el-button onClick={onCancel}>取消</el-button>
-                <el-button type="primary" onClick={onSubmit}>
-                  确定
-                </el-button>
+                {form.$cancelShow && <el-button onClick={onCancel}>{form.$cancelText}</el-button>}
+                {form.$confirmShow && (
+                  <el-button type="primary" onClick={onSubmit}>
+                    {form.$confirmText}
+                  </el-button>
+                )}
               </div>
             )
           }

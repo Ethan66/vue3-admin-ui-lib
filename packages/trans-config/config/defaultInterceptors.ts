@@ -47,17 +47,8 @@ type TableItem = AtransItemRes & {
 
 export type AtransResult = {
   search?: AtransSearchRes
-  search1?: AtransSearchRes
-  search2?: AtransSearchRes
-  search3?: AtransSearchRes
   table?: AtransTableRes
-  table1?: AtransTableRes
-  table2?: AtransTableRes
-  table3?: AtransTableRes
   dialog?: AtransDialogRes
-  dialog1?: AtransDialogRes
-  dialog2?: AtransDialogRes
-  dialog3?: AtransDialogRes
   $dialog?: DialogExtraFields
   [key: string]: any
 }
@@ -66,7 +57,7 @@ export * from '../types/default'
 
 export default {
   common: function (config: AtransRes): AtransResult {
-    function purifierObject(ob: object, type: ModuleType): object {
+    function purifierObject(ob: Record<string, any>, type: ModuleType): object {
       const result = Object.create(null)
       Object.keys(ob).forEach((key) => {
         if (key === 'field') {
@@ -105,7 +96,7 @@ export default {
     }
     Object.keys(config).forEach((type) => {
       if (['search', 'table', 'dialog'].includes(type.replace(/\d+/, ''))) {
-        const value = config[type]
+        const value = config[type] as Record<string, any>
         if (isPlainObject(value)) {
           Object.keys(value).forEach((key) => {
             if (key.startsWith('$')) return
@@ -136,6 +127,17 @@ export default {
               }
             }
             if (type === 'search') {
+              const rule = value[key].rule
+              if (rule !== undefined) {
+                const rules = (value as AtransDialogRes).$rules as Record<string, any>
+                rules[key] = []
+                const common = {
+                  ...ruleCommon,
+                  message: value[key].placeholder
+                }
+                rules[key][0] = rule === true ? common : { ...common, ...rule }
+                delete value[key].rule
+              }
               if (value[key].default !== undefined) {
                 ;(value as AtransSearchRes).$data[key] = value[key].default
               }
@@ -143,7 +145,7 @@ export default {
             if (type.replace(/\d+/, '') === 'dialog') {
               const rule = value[key].rule
               if (rule !== undefined) {
-                const rules = (value as AtransDialogRes).$rules as object
+                const rules = (value as AtransDialogRes).$rules as Record<string, any>
                 rules[key] = []
                 const common = {
                   ...ruleCommon,
@@ -156,7 +158,7 @@ export default {
             value[key] = purifierObject(value[key], type as ModuleType)
           })
         } else if (Array.isArray(value)) {
-          value.forEach((item, index) => {
+          ;(value as any[]).forEach((item, index) => {
             config[type + (index + 1)] = item
             Object.keys(item).forEach((key) => {
               if (key.startsWith('$')) return
@@ -193,7 +195,7 @@ export default {
               if (type.replace(/\d+/, '') === 'dialog') {
                 const rule = item[key].rule
                 if (rule !== undefined) {
-                  const rules = (item as AtransDialogRes).$rules as object
+                  const rules = (item as AtransDialogRes).$rules as Record<string, any>
                   rules[key] = []
                   const common = {
                     ...ruleCommon,

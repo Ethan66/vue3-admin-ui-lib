@@ -18,6 +18,7 @@ const App = defineComponent({
     const { search: form, min, table } = unref(props)
     const { slots, attrs } = context
     const isShowAll = ref(false)
+    const ruleFormRef = ref()
     const fields = computed(() => {
       const result = Object.keys(form).filter(
         (key) => !key.startsWith('$') && form[key].show === true
@@ -25,23 +26,30 @@ const App = defineComponent({
       return !min || isShowAll.value ? result : result.slice(0, min)
     })
     const onSearch = () => {
-      const value = { ...(form.$default || {}), ...form.$data }
-      Object.keys(value).forEach((key) => {
-        form.$data[key] ??= value[key]?.default ?? value[key]
-        if (/\w+,\w+/.test(key)) {
-          const tmpKeys = key.split(',')
-          const tmp = value[key] || []
-          value[tmpKeys[0]] = tmp[0]
-          value[tmpKeys[1]] = tmp[1]
-          form.$data[tmpKeys[0]] = tmp[0]
-          form.$data[tmpKeys[1]] = tmp[1]
-          delete value[key]
+      ruleFormRef.value.validate((valid: boolean) => {
+        if (valid) {
+          const value = { ...(form.$default || {}), ...form.$data }
+          Object.keys(value).forEach((key) => {
+            form.$data[key] ??= value[key]?.default ?? value[key]
+            if (/\w+,\w+/.test(key)) {
+              const tmpKeys = key.split(',')
+              const tmp = value[key] || []
+              value[tmpKeys[0]] = tmp[0]
+              value[tmpKeys[1]] = tmp[1]
+              form.$data[tmpKeys[0]] = tmp[0]
+              form.$data[tmpKeys[1]] = tmp[1]
+              delete value[key]
+            }
+          })
+          attrs.onSearch
+            ? (attrs.onSearch as (val: object) => {})(value)
+            : form.$search(value, table)
         }
       })
-      attrs.onSearch ? (attrs.onSearch as (val: object) => {})(value) : form.$search(value, table)
     }
 
     const onClear = () => {
+      ruleFormRef.value.resetFields()
       Object.keys(form.$data).forEach((key) => {
         if (form[key]?.default !== undefined) {
           form.$data[key] = form[key].default
@@ -59,6 +67,8 @@ const App = defineComponent({
     return () => (
       <el-form
         class="search-module"
+        rules={form.$rules}
+        ref={ruleFormRef}
         inline={form.$inline}
         model={form.$data}
         onSubmit={handleEmpty}
@@ -67,7 +77,7 @@ const App = defineComponent({
           const value = form[key]
           if (value.slot) {
             return (
-              <el-form-item key={key} label={value.label}>
+              <el-form-item key={key} label={value.label} prop={value.key}>
                 <FormItem
                   form={form}
                   field={key}
@@ -79,7 +89,7 @@ const App = defineComponent({
             )
           } else {
             return (
-              <el-form-item key={key} label={value.label}>
+              <el-form-item key={key} label={value.label} prop={value.key}>
                 <FormItem form={form} field={key} data={form.$data} item={form[key]}></FormItem>
               </el-form-item>
             )

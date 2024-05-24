@@ -1,6 +1,6 @@
 {
   "name": "admin",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "",
   "module": "es/index.js",
   "types": "es/index.d.ts",

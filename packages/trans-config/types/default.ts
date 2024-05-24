@@ -17,9 +17,6 @@ export interface Defaults {
     search?: SearchModuleFields
     table?: TableModuleFields
     dialog?: DialogModuleFields
-    dialog1?: DialogModuleFields
-    dialog2?: DialogModuleFields
-    dialog3?: DialogModuleFields
   }
   extraFields: {
     search?: object
@@ -27,23 +24,11 @@ export interface Defaults {
     dialog?: {
       $dialog: DialogExtraFields
     }
-    dialog1?: {
-      $dialog: DialogExtraFields
-    }
-    dialog2?: {
-      $dialog: DialogExtraFields
-    }
-    dialog3?: {
-      $dialog: DialogExtraFields
-    }
   }
   items: {
     search: object
     table: object
     dialog: object
-    dialog1: object
-    dialog2: object
-    dialog3: object
   }
   placeholders: string[]
   interceptors?: { [key: string]: InterceptorFn }
@@ -72,6 +57,7 @@ export type SearchModuleFields = {
   $search: SearchFn
   $inline: boolean
   $default: any // 默认值，非表单里展示的，但是接口请求需要
+  $rules?: object
 }
 
 export type DialogModuleFields = {
@@ -123,6 +109,11 @@ export type DialogExtraFields = {
     dialog: DialogExtraFields,
     table: TableModuleFields
   ) => Promise<any> | undefined
+  $confirmText: string
+  $confirmShow: boolean
+  $cancelText: string
+  $cancelShow: boolean
+  $onlyRead: boolean
 }
 
 // 最终结果
