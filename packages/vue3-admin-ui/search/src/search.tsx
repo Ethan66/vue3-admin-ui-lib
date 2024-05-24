@@ -54,7 +54,7 @@ const App = defineComponent({
         if (form[key]?.default !== undefined) {
           form.$data[key] = form[key].default
         } else {
-          form.$data[key] = undefined
+          delete form.$data[key]
         }
       })
       if (form.$default) {

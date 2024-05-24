@@ -41,6 +41,7 @@ const onEdit = (row: object) => {
   // dialog.api = apiEditUser
   dialog.table = table.value
   dialog.show = true
+  //   dialog.$onlyRead = true
 }
 
 // 删除

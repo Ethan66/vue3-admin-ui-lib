@@ -177,7 +177,8 @@ export default {
                   v.label ??= '序号'
                   v.width ??= 50
                   v.type = 'index'
-                  !v.index && (v.index = (item as { $typeIndexFn: any }).$typeIndexFn.bind(item))
+                  !v.index &&
+                    (v.index = (item as { $typeIndexFn: any }).$typeIndexFn.bind(null, item))
                 }
                 if (
                   v.width &&

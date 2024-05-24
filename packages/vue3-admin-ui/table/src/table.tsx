@@ -14,13 +14,11 @@ const App = defineComponent({
     const table = unref(config)
     const { slots, attrs } = context
     const fields = computed(() => {
-      return Object.keys(table).filter(
-        key => !key.startsWith('$') && table[key].show === true
-      )
+      return Object.keys(table).filter((key) => !key.startsWith('$') && table[key].show === true)
     })
     const parentAttr = computed(() => {
       return Object.keys(table)
-        .filter(key => key.startsWith('$'))
+        .filter((key) => key.startsWith('$'))
         .reduce((data, key) => {
           if (!['$pages', '$api', '$onGetData'].includes(key)) {
             data[key.slice(1)] = table[key]
@@ -50,7 +48,7 @@ const App = defineComponent({
           v-loading={table.$loading}
           key={tableKey.value}
         >
-          {fields.value.map(field => {
+          {fields.value.map((field) => {
             const value = table[field]
             if (value.slot || value['header-slot']) {
               return (
@@ -116,7 +114,7 @@ const App = defineComponent({
               v-model:current-page={table.$pages.current}
               v-model:page-size={table.$pages.pageSize}
               page-sizes={table.$pages.pageSizes}
-              small={true}
+              size="small"
               background
               layout="total, sizes, prev, pager, next"
               total={table.$pages.total}

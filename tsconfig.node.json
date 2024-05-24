@@ -2,7 +2,9 @@
   "extends": "@vue/tsconfig/tsconfig.node.json",
   "include": ["vite.config.*", "vitest.config.*", "cypress.config.*", "playwright.config.*"],
   "compilerOptions": {
+    "lib": ["DOM", "ESNext"],
     "composite": true,
+    "strict": false,
     "types": ["node"]
   }
 }
