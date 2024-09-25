@@ -40,6 +40,14 @@ const App = defineComponent({
               form.$data[tmpKeys[1]] = tmp[1]
               delete value[key]
             }
+            if (value[key] === '') {
+              delete value[key]
+            }
+            if (![null, undefined].includes(value[key])) {
+              if (form[key]?.$attr.type === 'number') {
+                value[key] = String(Number(value[key])) !== 'NaN' ? Number(value[key]) : value[key]
+              }
+            }
           })
           attrs.onSearch
             ? (attrs.onSearch as (val: object) => {})(value)
