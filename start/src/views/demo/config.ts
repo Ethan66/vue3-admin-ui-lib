@@ -65,6 +65,12 @@ export default pageConfig({
       el: 'select',
       options: [{ label: '123123', value: '23423' }],
       multiple: true
+    },
+    roleIds1: {
+      label: '角色',
+      el: 'checkbox',
+      options: [{ label: '123123', value: '23423' }],
+      multiple: true
     }
   }
   // [
