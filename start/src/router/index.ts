@@ -20,6 +20,11 @@ const router = createRouter({
       component: () => import('@/views/demo/index.vue')
     },
     {
+      path: '/form',
+      name: 'form',
+      component: () => import('@/views/form/index.vue')
+    },
+    {
       path: '/scss',
       name: 'scss',
       component: () => import('@/views/demo/css-lib/index.vue')

@@ -12,7 +12,7 @@ const App = defineComponent({
   setup(props, context) {
     const { dialog } = toRefs(props)
     const form = unref(dialog)
-    const { slots } = context
+    const { slots, attrs } = context
     const ruleFormRef = ref()
 
     /**
@@ -39,7 +39,20 @@ const App = defineComponent({
      */
     const parentAttr = computed(() => {
       return Object.keys(form).reduce((data: Record<string, any>, key) => {
-        if (['title', 'close-on-click-modal'].includes(key)) {
+        if (
+          ![
+            'api',
+            'data',
+            'labelWidth',
+            'config',
+            'rules',
+            'show',
+            'item-width',
+            'submit',
+            'table'
+          ].includes(key) &&
+          !key.startsWith('$')
+        ) {
           data[key] = form[key]
         }
         return data
@@ -76,7 +89,7 @@ const App = defineComponent({
     }
 
     return () => (
-      <el-dialog class="dialog-module" v-model={form.show} {...parentAttr.value}>
+      <el-dialog class="dialog-module" v-model={form.show} {...parentAttr.value} {...attrs}>
         {{
           default: () => {
             return (

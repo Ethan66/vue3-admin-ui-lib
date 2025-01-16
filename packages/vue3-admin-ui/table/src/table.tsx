@@ -20,7 +20,18 @@ const App = defineComponent({
       return Object.keys(table)
         .filter((key) => key.startsWith('$'))
         .reduce((data, key) => {
-          if (!['$pages', '$api', '$onGetData'].includes(key)) {
+          if (
+            ![
+              '$pages',
+              '$api',
+              '$onGetData',
+              '$changePage',
+              '$loading',
+              '$permissions',
+              '$searchValue',
+              '$typeIndexFn'
+            ].includes(key)
+          ) {
             data[key.slice(1)] = table[key]
           }
           return data

@@ -9,3 +9,6 @@ export * from './table'
 
 export { DialogModule } from './dialog'
 export * from './dialog'
+
+export { FormWrap } from './form-wrap'
+export * from './form-wrap'

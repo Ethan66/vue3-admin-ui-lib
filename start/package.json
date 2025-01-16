@@ -17,6 +17,6 @@
     "trans-config": "0.0.1",
     "vue": "^3.2.47",
     "vue-router": "^4.1.6",
-    "vue3-admin-ui": "0.0.2"
+    "vue3-admin-ui": "0.0.12"
   }
 }

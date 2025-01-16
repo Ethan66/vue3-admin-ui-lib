@@ -69,6 +69,24 @@ const atransFn = atrans.create({
   }
 })
 
+atransFn.interceptor.use((config) => {
+  Object.keys(config).forEach((key) => {
+    if (key.startsWith('search')) {
+      const search = config[key]
+      Object.keys(search).forEach((k) => {
+        if (!k.includes('$')) {
+          if (search[k].el === 'input') {
+            search[k].$attr.style = {
+              width: '220px'
+            }
+          }
+        }
+      })
+    }
+  })
+  return config
+})
+
 /**
  * name: 自定义
  * search/dialog/table的item配置项自定义类型

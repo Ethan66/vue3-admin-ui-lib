@@ -19,7 +19,7 @@
 <script setup lang="ts">
 import { toRefs, reactive, unref } from 'vue'
 import { apiGetUserList } from '@/api/user'
-import data from './config'
+import pageConfig from './config'
 
 // 新增
 const onAdd = () => {
@@ -50,7 +50,7 @@ const onDel = (val: any) => {
 }
 
 // 初始化
-const configs = reactive(data)
+const configs = reactive(pageConfig())
 configs.table.btn.clicks = [onEdit, onDel] // 给按钮添加事件
 const { search, table, $dialog } = toRefs(configs)
 search.value.$data['startCallTime,endCallTime'] = ['2023-11-22 00:00:00', '2023-11-23 00:00:00']
