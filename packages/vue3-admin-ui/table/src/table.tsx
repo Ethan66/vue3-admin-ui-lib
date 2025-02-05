@@ -89,6 +89,7 @@ const App = defineComponent({
                           }
                           return slots[value.slot]?.({
                             row: scope.row,
+                            column: scope.column,
                             index: scope.$index
                           })
                         }
