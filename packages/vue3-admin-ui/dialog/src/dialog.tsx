@@ -75,6 +75,9 @@ const App = defineComponent({
       })
       ruleFormRef.value.validate((valid: boolean) => {
         if (valid) {
+          attrs.onSubmit
+            ? (attrs.onSubmit as any)(form.data, form.table)
+            : form.submit(form.data, form.table)
           form.submit(form.data, form, form.table)
         }
       })
