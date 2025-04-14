@@ -153,7 +153,7 @@ const App = defineComponent({
               <div>
                 {form.$cancelShow && <el-button onClick={onCancel}>{form.$cancelText}</el-button>}
                 {form.$confirmShow && (
-                  <el-button type="primary" onClick={onSubmit}>
+                  <el-button type="primary" loading={form.$loading} onClick={onSubmit}>
                     {form.$confirmText}
                   </el-button>
                 )}

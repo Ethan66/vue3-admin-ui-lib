@@ -110,6 +110,7 @@ export type DialogExtraFields = {
     table: TableModuleFields
   ) => Promise<any> | undefined
   $confirmText: string
+  $loading: boolean
   $confirmShow: boolean
   $cancelText: string
   $cancelShow: boolean

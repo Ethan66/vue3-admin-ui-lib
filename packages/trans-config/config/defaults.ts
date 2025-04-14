@@ -58,6 +58,7 @@ const defaults: Defaults = {
         'item-width': '50%',
         submit: () => new Promise(() => {}),
         $confirmText: '确定',
+        $loading: false,
         $confirmShow: true,
         $cancelText: '取消',
         $cancelShow: true,
