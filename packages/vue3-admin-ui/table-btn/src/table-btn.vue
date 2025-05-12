@@ -26,8 +26,7 @@ type Config = {
   type?: string
 }[]
 
-const isFun = (val: unknown) =>
-  Object.prototype.toString.call(val) === '[object Function]'
+const isFun = (val: unknown) => Object.prototype.toString.call(val) === '[object Function]'
 
 const props = defineProps({
   row: {
@@ -58,29 +57,26 @@ const primarys = computed(() => {
 })
 const btns = computed(() => {
   const newConfig = { types: primarys.value, ...config }
-  const result: Config = Object.keys(newConfig).reduce(
-    (result: Config, key: string) => {
-      const arr = newConfig[key]
-      Array.isArray(arr) &&
-        arr.forEach((item: any, i: number) => {
-          if (!result[i]) {
-            result[i] = Object.create(null)
-          }
-          key === 'icons' && (item = Icons[item])
-          key === 'disableds' && (item = isFun(item) ? item(row) : item)
-          key === 'shows' && (item = isFun(item) ? item(row) : item)
-          key === 'types' && (item = item || 'primary')
-          result[i][key.endsWith('s') ? key.slice(0, -1) : key] = item
-        })
-      return result
-    },
-    []
-  )
+  const result: Config = Object.keys(newConfig).reduce((result: Config, key: string) => {
+    const arr = newConfig[key]
+    Array.isArray(arr) &&
+      arr.forEach((item: any, i: number) => {
+        if (!result[i]) {
+          result[i] = Object.create(null)
+        }
+        key === 'names' && (item = isFun(item) ? item(row) : item)
+        key === 'icons' && (item = Icons[item])
+        key === 'disableds' && (item = isFun(item) ? item(row) : item)
+        key === 'shows' && (item = isFun(item) ? item(row) : item)
+        key === 'types' && (item = item || 'primary')
+        result[i][key.endsWith('s') ? key.slice(0, -1) : key] = item
+      })
+    return result
+  }, [])
   return permission?.includes('*:*:*')
-    ? result.filter(item => item.show !== false)
+    ? result.filter((item) => item.show !== false)
     : result.filter(
-        item =>
-          (!item.code || permission?.includes(item.code)) && item.show !== false
+        (item) => (!item.code || permission?.includes(item.code)) && item.show !== false
       )
 })
 </script>
