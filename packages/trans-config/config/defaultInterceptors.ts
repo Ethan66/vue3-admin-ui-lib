@@ -127,7 +127,7 @@ export default {
               }
             }
             if (type === 'search') {
-              const rule = value[key].rule
+              const rule = value[key].rule === false ? { required: false } : value[key].rule
               if (rule !== undefined) {
                 const rules = (value as AtransDialogRes).$rules as Record<string, any>
                 rules[key] = []
@@ -143,7 +143,7 @@ export default {
               }
             }
             if (type.replace(/\d+/, '') === 'dialog') {
-              const rule = value[key].rule
+              const rule = value[key].rule === false ? { required: false } : value[key].rule
               if (rule !== undefined) {
                 const rules = (value as AtransDialogRes).$rules as Record<string, any>
                 rules[key] = []
@@ -194,7 +194,7 @@ export default {
                 }
               }
               if (type.replace(/\d+/, '') === 'dialog') {
-                const rule = item[key].rule
+                const rule = item[key].rule === false ? { required: false } : item[key].rule
                 if (rule !== undefined) {
                   const rules = (item as AtransDialogRes).$rules as Record<string, any>
                   rules[key] = []
